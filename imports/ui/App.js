@@ -36,8 +36,8 @@ export default class App extends Component {
    render(){
         return (
           <Router>
-            <Container fluid={true}>
-              <Navbar color="danger" dark expand="md">
+            <div>
+              <Navbar color="primary" dark expand="md">
                 <NavbarBrand tag={Link} to="/">Forbole Fundraiser</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
@@ -56,7 +56,7 @@ export default class App extends Component {
                 <Route path="/login" component={() => <Accounts.ui.LoginForm />} />
                 <Route path="/balance" component={Balance} />
               </Container>
-            </Container>
+            </div>
           </Router>
         );
       }
