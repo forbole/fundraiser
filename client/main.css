@@ -37,3 +37,7 @@ form.accounts fieldset button.btn{
 form.accounts fieldset button.btn.ui.button{
     margin-top: 0.75em;
 }
+
+#main.container{
+    padding-top: 1em;
+}

@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'reactstrap';
 
 export default class Home extends Component{
     render(){
-        return <Container>
+        return <div>
             <h1>Home</h1>
-        </Container>
+        </div>
     }
 }
