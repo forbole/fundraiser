@@ -7,9 +7,7 @@ Accounts.config({
 
 Accounts.ui.config({
   passwordSignupFields: 'EMAIL_ONLY',
-  // loginPath: '/login',
-  // signUpPath: '/signup',
-  // resetPasswordPath: '/reset-password',
-  // profilePath: '/profile',
-  minimumPasswordLength: 7
+  minimumPasswordLength: 7,
+  homeRoutePath: '/balance',
+  requireEmailVerification: true
 });

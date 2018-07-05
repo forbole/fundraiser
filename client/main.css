@@ -1,0 +1,39 @@
+html, body, #root, #root .login-container{
+    height: 100%;
+}
+body{
+    min-height: 100%;
+    background-color: #e8e8e8 !important;
+}
+/* 
+#login-logo{
+    width: auto;
+    max-width: 300px;
+} */
+
+#login-container h1{
+    background-image: url(/img/forbole-logo-icon.png);
+    background-size: contain;
+    background-position: top left;
+    background-repeat: no-repeat;
+    padding-left: 1.35em;
+}
+
+#login-container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+#login-container .row{
+    width: 100%;
+}
+
+form.accounts fieldset button.btn{
+    width: 100%;
+    display: block;
+}
+form.accounts fieldset button.btn.ui.button{
+    margin-top: 0.75em;
+}

@@ -1,0 +1,3 @@
+[submodule "packages/accounts-bootstrap"]
+	path = packages/accounts-bootstrap
+	url = https://github.com/kwunyeung/accounts-bootstrap.git

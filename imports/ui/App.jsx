@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accounts } from 'meteor/std:accounts-ui';
+import { Meteor } from 'meteor/meteor';
 import {
   Container,
   Collapse,
@@ -14,9 +14,11 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import Home from './Home.js'
-import Balance from './Balance.js'
-import Login from './Login.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './Home.jsx'
+import Balance from './Balance.jsx'
+import Login from './Login.jsx'
 
 export default class App extends Component {
   constructor(props) {
@@ -33,31 +35,48 @@ export default class App extends Component {
     });
   }
 
+  logout(){
+    Meteor.logout();
+  }
+
    render(){
+      if (Meteor.user()){
         return (
           <Router>
             <div>
+              <ToastContainer />
               <Navbar color="primary" dark expand="md">
                 <NavbarBrand tag={Link} to="/">Forbole Fundraiser</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink tag={Link} to="/login">Login</NavLink>
-                    </NavItem>
-                    <NavItem>
                       <NavLink tag={Link} to="/balance">Balance</NavLink>
                     </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} to="#" onClick={this.logout} >Logout</NavLink>
+                    </NavItem>                  
                   </Nav>
                 </Collapse>
               </Navbar>
               <Container>
                 <Route exact path="/" component={Home} />
-                <Route path="/login" component={() => <Accounts.ui.LoginForm />} />
+                <Route path="/login" component={Login} />
                 <Route path="/balance" component={Balance} />
               </Container>
             </div>
           </Router>
         );
       }
+      else {
+        return (
+          <Router>
+            <div className="login-container">
+              <ToastContainer />
+              <Route exact path="/" component={Login} />
+            </div>
+          </Router>
+        )
+      }
+    }
 }

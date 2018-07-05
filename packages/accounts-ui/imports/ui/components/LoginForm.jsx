@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { Random } from 'meteor/random';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Accounts } from 'meteor/accounts-base';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
@@ -678,8 +677,8 @@ class LoginForm extends Component {
       serviceName = 'meteorDeveloperAccount';
     }
 
+    // const loginWithService = Meteor["loginWith" + capitalService()];
     const loginWithService = Meteor["loginWith" + capitalService()];
-
     let options = {}; // use default scope unless specified
     if (Accounts.ui._options.requestPermissions[serviceName])
       options.requestPermissions = Accounts.ui._options.requestPermissions[serviceName];
@@ -749,8 +748,7 @@ class LoginForm extends Component {
       "USERNAME_AND_EMAIL_NO_PASSWORD"
     ].includes(passwordSignupFields())) {
       // Generate a random password.
-      // options.password = Meteor.uuid();
-      options.password = Random.id();
+      options.password = Meteor.uuid();
     } else if (!this.validateField('password', password)) {
       onSubmitHook("Invalid password", formState);
       error = true;
@@ -1026,12 +1024,10 @@ LoginForm.defaultProps = {
 
 Accounts.ui.LoginForm = LoginForm;
 
-const LoginFormContainer = withTracker(() => {
+export default withTracker(() => {
   // Listen for the user to login/logout and the services list to the user.
   Meteor.subscribe('servicesList');
   return ({
     user: Accounts.user(),
   });
 })(LoginForm);
-Accounts.ui.LoginForm = LoginFormContainer;
-export default LoginFormContainer
